@@ -26,6 +26,13 @@ function App() {
     fetchData();
   }, []);
 
+  let sousTotal = 0;
+  for (let i = 0; i < selectedProducts.length; i++) {
+    sousTotal += selectedProducts[i].quantity * selectedProducts[i].price;
+  }
+  const fraisLivraison = 2.5;
+  let total = sousTotal + fraisLivraison;
+
   return (
     <>
       {isLoading ? (
@@ -51,26 +58,41 @@ function App() {
               })}
             </div>
             <div className="cart">
-              <button>Valider mon panier</button>
-              <div className="selected-products">
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
-                <span>Brunch vegan</span>
-                <span>25,00 €</span>
-              </div>
-              <div>
-                <span>Sous-total</span>
-                <span>50,00 €</span>
-              </div>
-              <div>
-                <span>Frais de livraison</span>
-                <span>2,50 €</span>
-              </div>
-              <div>
-                <span>Total</span>
-                <span>52,50 €</span>
-              </div>
+              {selectedProducts.length === 0 ? (
+                <>
+                  <button>Valider mon panier</button>
+                  <div>Votre panier est vide</div>
+                </>
+              ) : (
+                <>
+                  <button>Valider mon panier</button>
+                  <div className="selected-products">
+                    {selectedProducts.map((product, index) => {
+                      return (
+                        <div className="product">
+                          <button>-</button>
+                          <span>{product.quantity}</span>
+                          <button>+</button>
+                          <span>{product.title}</span>
+                          <span>{product.price} €</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div>
+                    <span>Sous-total</span>
+                    <span>{sousTotal} €</span>
+                  </div>
+                  <div>
+                    <span>Frais de livraison</span>
+                    <span>{fraisLivraison} €</span>
+                  </div>
+                  <div>
+                    <span>Total</span>
+                    <span>{total} €</span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </>
