@@ -4,31 +4,75 @@ import "./components/css/reset.css";
 import "./App.css";
 
 import Header from "./components/Header";
-import Content from "./components/Content";
+import Category from "./components/Category";
+import Cart from "./components/Cart";
 
 function App() {
-  const [data, setData] = useState({});
+  const [restaurant, setRestaurant] = useState({});
+  const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
         "https://deliveroo-backend-2003.herokuapp.com/"
       );
-      setData(response.data);
+      setRestaurant(response.data.restaurant);
+      setCategories(response.data.categories);
       setIsLoading(false);
     };
+
     fetchData();
   }, []);
 
   return (
     <>
-      {isLoading === true ? (
+      {isLoading ? (
         <div>Loading page</div>
       ) : (
         <>
-          <Header data={data} />
-          <Content categories={data.categories} />
+          <Header restaurant={restaurant} />
+          <div className="content container">
+            <div className="menu">
+              {categories.map((category, index) => {
+                if (category.meals.length === 0) {
+                  return null;
+                } else {
+                  return (
+                    <Category
+                      name={category.name}
+                      meals={category.meals}
+                      selectedProducts={selectedProducts}
+                      setSelectedProducts={setSelectedProducts}
+                    />
+                  );
+                }
+              })}
+            </div>
+            <div className="cart">
+              <button>Valider mon panier</button>
+              <div className="selected-products">
+                <button>-</button>
+                <span>1</span>
+                <button>+</button>
+                <span>Brunch vegan</span>
+                <span>25,00 €</span>
+              </div>
+              <div>
+                <span>Sous-total</span>
+                <span>50,00 €</span>
+              </div>
+              <div>
+                <span>Frais de livraison</span>
+                <span>2,50 €</span>
+              </div>
+              <div>
+                <span>Total</span>
+                <span>52,50 €</span>
+              </div>
+            </div>
+          </div>
         </>
       )}
     </>

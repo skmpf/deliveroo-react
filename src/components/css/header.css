@@ -11,8 +11,8 @@
   display: flex;
   align-items: center;
 }
-.topbar svg {
-  width: 160px;
+.topbar img {
+  width: 155px;
 }
 .restaurant-infos {
   display: flex;
