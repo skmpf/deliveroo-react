@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./components/css/reset.css";
 import "./App.css";
 
 import Header from "./components/Header";
@@ -25,13 +24,37 @@ function App() {
 
     fetchData();
   }, []);
+  console.log(selectedProducts);
 
-  let sousTotal = 0;
-  for (let i = 0; i < selectedProducts.length; i++) {
-    sousTotal += selectedProducts[i].quantity * selectedProducts[i].price;
-  }
-  const fraisLivraison = 2.5;
-  let total = sousTotal + fraisLivraison;
+  const addItem = title => {
+    const exist = selectedProducts.find(cartItem => cartItem.title === title);
+    if (exist) {
+      const index = selectedProducts.indexOf(exist);
+      const newCart = [...selectedProducts];
+      newCart[index] = {
+        ...newCart[index],
+        quantity: newCart[index].quantity + 1
+      };
+      setSelectedProducts(newCart);
+    }
+  };
+
+  const removeItem = title => {
+    const exist = selectedProducts.find(cartItem => cartItem.title === title);
+    const newCart = [...selectedProducts];
+    if (exist) {
+      const index = selectedProducts.indexOf(exist);
+      if (selectedProducts[index].quantity !== 1) {
+        newCart[index] = {
+          ...newCart[index],
+          quantity: newCart[index].quantity - 1
+        };
+      } else {
+        newCart.splice(index, 1);
+      }
+      setSelectedProducts(newCart);
+    }
+  };
 
   return (
     <>
@@ -40,59 +63,29 @@ function App() {
       ) : (
         <>
           <Header restaurant={restaurant} />
-          <div className="content container">
-            <div className="menu">
-              {categories.map((category, index) => {
-                if (category.meals.length === 0) {
-                  return null;
-                } else {
-                  return (
-                    <Category
-                      name={category.name}
-                      meals={category.meals}
-                      selectedProducts={selectedProducts}
-                      setSelectedProducts={setSelectedProducts}
-                    />
-                  );
-                }
-              })}
-            </div>
-            <div className="cart">
-              {selectedProducts.length === 0 ? (
-                <>
-                  <button>Valider mon panier</button>
-                  <div>Votre panier est vide</div>
-                </>
-              ) : (
-                <>
-                  <button>Valider mon panier</button>
-                  <div className="selected-products">
-                    {selectedProducts.map((product, index) => {
-                      return (
-                        <div className="product">
-                          <button>-</button>
-                          <span>{product.quantity}</span>
-                          <button>+</button>
-                          <span>{product.title}</span>
-                          <span>{product.price} €</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div>
-                    <span>Sous-total</span>
-                    <span>{sousTotal} €</span>
-                  </div>
-                  <div>
-                    <span>Frais de livraison</span>
-                    <span>{fraisLivraison} €</span>
-                  </div>
-                  <div>
-                    <span>Total</span>
-                    <span>{total} €</span>
-                  </div>
-                </>
-              )}
+          <div className="content">
+            <div className="container">
+              <div className="menu">
+                {categories.map((category, index) => {
+                  if (category.meals.length === 0) {
+                    return null;
+                  } else {
+                    return (
+                      <Category
+                        name={category.name}
+                        meals={category.meals}
+                        selectedProducts={selectedProducts}
+                        setSelectedProducts={setSelectedProducts}
+                      />
+                    );
+                  }
+                })}
+              </div>
+              <Cart
+                selectedProducts={selectedProducts}
+                addItem={addItem}
+                removeItem={removeItem}
+              />
             </div>
           </div>
         </>

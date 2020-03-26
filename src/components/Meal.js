@@ -10,9 +10,9 @@ function Meal({
   setSelectedProducts
 }) {
   return (
-    <>
+    <div className="item">
       <div
-        className="item"
+        className="item-card"
         onClick={() => {
           const copy = [...selectedProducts];
           let isProductFound = false;
@@ -40,7 +40,7 @@ function Meal({
           {picture && <img src={picture} alt={title} />}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

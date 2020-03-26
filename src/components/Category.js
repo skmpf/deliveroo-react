@@ -1,5 +1,4 @@
 import React from "react";
-import "./css/content.css";
 import Meal from "./Meal";
 
 function Category(props) {

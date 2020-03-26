@@ -1,11 +1,10 @@
 import React from "react";
-import "./css/header.css";
 import logo from "../assets/img/deliveroo.png";
 
 function Header(props) {
   const { restaurant } = props;
   return (
-    <div className="header">
+    <header>
       <div className="topbar">
         <div className="container">
           <img src={logo} alt="deliveroo-logo" />
@@ -26,7 +25,7 @@ function Header(props) {
           )}
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 
