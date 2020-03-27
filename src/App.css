@@ -40,6 +40,14 @@ h3 {
   max-width: 1200px;
   display: flex;
 }
+.loading {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  filter: invert(65%) sepia(16%) saturate(7499%) hue-rotate(131deg)
+    brightness(94%) contrast(101%);
+}
 
 /* HEADER */
 header {
@@ -55,6 +63,7 @@ header {
 }
 .topbar img {
   width: 155px;
+  height: 41px;
 }
 .restaurant-infos {
   display: flex;
@@ -153,7 +162,7 @@ header {
   width: 350px;
   position: sticky !important;
   position: -webkit-sticky; /* Safari */
-  top: 0px;
+  top: 0;
   font-size: 16px;
   color: #2e3333;
 }

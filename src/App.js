@@ -24,7 +24,6 @@ function App() {
 
     fetchData();
   }, []);
-  console.log(selectedProducts);
 
   const addItem = title => {
     const exist = selectedProducts.find(cartItem => cartItem.title === title);
@@ -59,7 +58,7 @@ function App() {
   return (
     <>
       {isLoading ? (
-        <div>Loading page</div>
+        <div className="loading">Loading page</div>
       ) : (
         <>
           <Header restaurant={restaurant} />
