@@ -27,6 +27,12 @@
 
 - Homemade UI without framework
 
+**Client**
+
+- React
+- HTTP request with axios package
+- Hooks (useState, useEffect)
+
 ### Running the project
 
 Clone this repository :
@@ -51,6 +57,10 @@ npm start
 ## Deliveroo API
 
 <a href="https://github.com/sebkpf/deliveroo-backend">https://github.com/sebkpf/deliveroo-backend</a>
+
+- Node.js
+- Express
+- Cors
 
 ## Deployment
 
