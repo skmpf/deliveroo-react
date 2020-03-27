@@ -35,14 +35,14 @@
 
 ### Running the project
 
-Clone this repository :
+Clone this repository:
 
 ```
 git clone https://github.com/sebkpf/deliveroo-react.git
 cd deliveroo-react
 ```
 
-Install packages :
+Install packages:
 
 ```
 npm install
