@@ -67,10 +67,9 @@ npm start
 - Client deployed with Netlify
 - Server deployed with Heroku
 
-## TO DO
+## Project status
 
-- Make the application fully responsive
-- Figure out why the Cart component is not stickied
+Project is completed but not responsive
 
 ## Contact
 
