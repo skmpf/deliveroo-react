@@ -3,7 +3,7 @@ import React from "react";
 import minus from "../assets/img/circle-minus-512.png";
 import plus from "../assets/img/plus-circle-512.png";
 
-function Cart({ selectedProducts, addItem, removeItem }) {
+function Cart({ selectedProducts, addItem, removeItem, clearCart }) {
   let sousTotal = 0;
   for (let i = 0; i < selectedProducts.length; i++) {
     sousTotal += selectedProducts[i].quantity * selectedProducts[i].price;
@@ -14,12 +14,23 @@ function Cart({ selectedProducts, addItem, removeItem }) {
     <div className="cart">
       {selectedProducts.length === 0 ? (
         <div className="cart-card">
-          <button className="button-disabled">Valider mon panier</button>
+          <div className="cart-actions">
+            <button className="button-disabled">Valider mon panier</button>
+            <button className="button-reset">Reset</button>
+          </div>
           <div className="cart-empty">Votre panier est vide</div>
         </div>
       ) : (
         <div className="cart-card">
-          <button className="button-validate">Valider mon panier</button>
+          <div className="cart-actions">
+            <button className="button-validate">Valider mon panier</button>
+            <button
+              className="button-reset"
+              onClick={() => {
+                clearCart();
+              }}
+              >Reset</button>
+          </div>
           <div className="cart-items">
             {selectedProducts.map((product, index) => {
               return (

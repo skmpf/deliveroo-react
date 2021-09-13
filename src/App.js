@@ -55,6 +55,10 @@ function App() {
     }
   };
 
+  const clearCart = () => {
+    setSelectedProducts([]);
+  }
+
   return (
     <>
       {isLoading ? (
@@ -84,6 +88,7 @@ function App() {
                 selectedProducts={selectedProducts}
                 addItem={addItem}
                 removeItem={removeItem}
+                clearCart={clearCart}
               />
             </div>
           </div>

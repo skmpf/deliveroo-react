@@ -176,8 +176,12 @@ header {
   position: -webkit-sticky; /* Safari */
   top: 15px;
 }
+.cart-actions {
+  display: flex;
+  justify-content: space-around;
+}
 .button-disabled {
-  cursor: not-allowed;
+  width: 100%;
   margin: 10px;
   border-radius: 5px;
   padding: 1rem;
@@ -189,6 +193,7 @@ header {
 }
 .button-validate {
   margin: 10px;
+  width: 100%;
   border-radius: 5px;
   padding: 1rem;
   background: #00cdbd;
@@ -196,6 +201,23 @@ header {
   border: none;
   font-weight: 700;
   font-size: 1rem;
+}
+.button-validate:hover {
+  cursor: pointer;
+}
+.button-reset {
+  margin: 10px;
+  width: 25%;
+  border-radius: 5px;
+  padding: 1rem;
+  background: #bac3c3;
+  color: #8b9a9b;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.button-reset:hover {
+  cursor: pointer;
 }
 .cart-empty {
   color: #868a8a;
