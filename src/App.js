@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        "https://deliveroo-backend-2003.herokuapp.com/"
+        "https://deliveroo-backend-2003.fly.dev/"
       );
       setRestaurant(response.data.restaurant);
       setCategories(response.data.categories);
